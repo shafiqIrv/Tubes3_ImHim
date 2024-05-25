@@ -1,0 +1,51 @@
+﻿<Window x:Class="Tubes3_ImHim.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="fingerFinder" Height="878" Width="1538" Background="#0A0B15">
+    <Grid>
+        <Image Source="/resources/logo.png" MaxWidth="500" VerticalAlignment="Top"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Background="#242F45" Margin="56,215,53,276" Grid.Column="2" Grid.ColumnSpan="2" Padding="20" CornerRadius="20">
+                <StackPanel>
+                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="nama"  Text="Name"/>
+                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="tempat_lahir"  Text="Place of Birth"/>
+                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="tanggal_lahir"  Text="Date of Birth"/>
+                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="gender"  Text="Gender"/>
+                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="goldar"  Text="Blood Type"/>
+                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="alamat"  Text="Address"/>
+                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="agama"  Text="Religion"/>
+                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="kawin" Text="Marriage"/>
+                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="pekerjaan"  Text="Job"/>
+                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="kewarganegaraan"  Text="Nationalitu"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" Grid.Row="0" Background="#242F45" Margin="58,219,54,273" CornerRadius="20">
+
+            </Border>
+            <Border Grid.Row="0" Background="#242F45" Margin="50,213,62,270" CornerRadius="20">
+                <Image Name="finger_src" />
+
+            </Border>
+            <Button Content="Pilih Citra" HorizontalAlignment="Center" Margin="0,732,0,0" VerticalAlignment="Top" Height="36" Width="120" Click="chooseFile"/>
+            <ComboBox Grid.Column="1" HorizontalAlignment="Center" Margin="0,723,0,0" VerticalAlignment="Top" Width="162" RenderTransformOrigin="0.204,0.867" Height="40" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBoxItem Content="KMP"/>
+                <ComboBoxItem Content="BM"/>
+            </ComboBox>
+            <Button Grid.Column="2" Content="Search" HorizontalAlignment="Left" Margin="120,728,0,0" VerticalAlignment="Top" Height="39" Width="153" Click="search"/>
+            <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="12,712,0,0" TextWrapping="Wrap" FontSize="20" Foreground="#C2CDDA" Text="Waktu Pencarian: " VerticalAlignment="Top" Height="37" Width="224"/>
+            <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="12,749,0,0" TextWrapping="Wrap" FontSize="20" Foreground="#C2CDDA" Text="Persentase Kecocokkan: " VerticalAlignment="Top" Height="37" Width="224"/>
+        </Grid>
+
+
+    </Grid>
+</Window>

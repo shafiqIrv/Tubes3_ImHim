@@ -1,0 +1,85 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj",
+        "projectName": "Tubes3_ImHim",
+        "projectPath": "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj",
+        "packagesPath": "C:\\Users\\Shafi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\Tubes3_ImHim\\Tubes3_ImHim\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Shafi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Bogus": {
+              "target": "Package",
+              "version": "[35.5.1, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.35, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.7.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
