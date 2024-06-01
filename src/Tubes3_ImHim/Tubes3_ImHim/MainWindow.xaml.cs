@@ -24,9 +24,9 @@ namespace Tubes3_ImHim
             if (success == true)
             {
                 // Menampilkan gambar bmp yang dipilih pada Image control 'finger_src'
-                finger_src.Source = new BitmapImage(new Uri(fileDialog.FileName));
-                string test = ImageProcesser.BitmapToAscii(fileDialog.FileName);
-                nama.Text = (BM.Search(ImageProcesser.get30MiddleCharacter(test),test)).ToString();
+                //finger_src.Source = new BitmapImage(new Uri(fileDialog.FileName));
+                //string test = ImageProcesser.BitmapToAscii(fileDialog.FileName);
+                //nama.Text = (BM.Search(ImageProcesser.get30MiddleCharacter(test),test)).ToString();
             }
         }
 
@@ -37,6 +37,11 @@ namespace Tubes3_ImHim
         }
 
         private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
 
         }
