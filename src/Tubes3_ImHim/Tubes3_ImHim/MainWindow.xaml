@@ -80,8 +80,8 @@
         <Image Grid.Row="0" Width="470" Source= "{StaticResource logo}"/>
 
         <!-- Row 1 Content -->
-        <Grid Grid.Row="1" VerticalAlignment="Top">
-            <TextBlock Name="information"  Text="" Foreground="White" Margin="35 10 0 10"/>
+        <Grid Grid.Row="1" VerticalAlignment="Center">
+            <TextBlock Name="information"  Text="" Foreground="White" HorizontalAlignment="Center"/>
         </Grid>
 
         <!-- Row 2 Content -->
@@ -113,9 +113,10 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!-- Choose File Button -->
-                <Button Grid.Row="0" Style="{StaticResource RoundedButtonStyle}" Content="Choose Image" Height="37" Click="chooseFile" />
+                <Button Grid.Row="0" Name ="choose_file_btn"  IsEnabled="False"  Style="{StaticResource RoundedButtonStyle}" Content="Choose Image" Height="37" Click="chooseFile" />
                 <!-- Toggle Utility -->
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -138,8 +139,12 @@
 
                 </Grid>
 
+                <!-- Choose Dataset Button -->
+                <Button Grid.Row="2" Style="{StaticResource RoundedButtonStyle}" Content="Choose Dataset" Height="37" Click="chooseDirectory"/>
+
                 <!-- Search Button -->
-                <Button Grid.Row="2" Style="{StaticResource RoundedButtonStyle}" Content="Search" Height="37" Click="search"/>
+                <Button Grid.Row="3" Name ="search_btn" IsEnabled="False" Style="{StaticResource RoundedButtonStyle}" Content="Search"  Height="37" Click="search"/>
+            
             </Grid>
         </Grid>
 

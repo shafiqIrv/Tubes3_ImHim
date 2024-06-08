@@ -1,5 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.VisualBasic;
+using Microsoft.Win32;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -15,11 +17,14 @@ namespace Tubes3_ImHim
     {
 
         public string mode;
-
+        public string dataset_path;
         public string src_path;
         public string src_ascii;
         public string target_path;
         public string target_ascii;
+        public string matchable_path;
+        public string matchable_filename;
+        public float matchable_similarity = 0;
 
 
         public MainWindow()
@@ -29,6 +34,8 @@ namespace Tubes3_ImHim
             // Switch Button Listener
             switch_mode.Checked += switchChecked;
             switch_mode.Unchecked += switchUnchecked;
+
+            // Initialize button to be disabled before entering dataset
 
             // Initialize default mode as KMP
             mode = "bm";
@@ -52,9 +59,34 @@ namespace Tubes3_ImHim
             }
         }
 
+        private void chooseDirectory(object sender, RoutedEventArgs e)
+        {
+            OpenFolderDialog folderDialog = new OpenFolderDialog();
+
+            bool? success = folderDialog.ShowDialog();
+            if (success == true)
+            {
+
+                dataset_path = folderDialog.FolderName;
+                information.Text = dataset_path;
+
+                // Implement Load databasenya disini
+
+                // Enable button lainnya
+                search_btn.IsEnabled = true;
+                choose_file_btn.IsEnabled = true;
+            }
+        }
 
         private void search(object sender, RoutedEventArgs e)
         {
+            // Clear data sebelumnya kalo ada
+            search_time.Text = "";
+            similarity_persentage.Text = "";
+            finger_target.Source = null;
+            information.Text = "";
+            information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+
             // Check dulu si image nya empty ga
             if (finger_src.Source == null)
             {
@@ -63,28 +95,51 @@ namespace Tubes3_ImHim
                 return;
             }
 
-            information.Text = "";
-            information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+            // Searching
+            string directoryPath = dataset_path;
+            try
+            {
 
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
 
-            target_path = "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\With Repo\\Tubes3_ImHim\\src\\Tubes3_ImHim\\Tubes3_ImHim\\resources\\Finger\\1__M_Left_thumb_finger.BMP";
+                IEnumerable<string> files = Directory.EnumerateFiles(directoryPath);
 
-            string src = (ImageProcesser.BitmapToAscii(src_path));
-            string target = (ImageProcesser.BitmapToAscii(target_path));
-            finger_target.Source = new BitmapImage(new Uri(target_path));
+                // Iterasi melalui semua file dan mencetak nama file
+                foreach (string file in files)
+                {
+                    target_path = file;
+                    string target_ascii = ImageProcesser.BitmapToAscii(target_path);
+                    string src_ascii = ImageProcesser.BitmapToAscii(src_path);
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            float result = LCS.Calculate(src, src);
-            sw.Stop();
+                    float persentage = LevenshteinDistance.Calculate(target_ascii, src_ascii);
 
-            information.Text = "SRC :" + src.Length + " TARGET: " + target.Length;
+                    if (persentage > matchable_similarity)
+                    {
+                        matchable_similarity = persentage;
+                        matchable_path = target_path;
+                        //matchable_filename = Path.GetFileName(src_path);
+                    }
 
-            search_time.Text = sw.ElapsedMilliseconds.ToString();
-            similarity_persentage.Text = result.ToString();
+                }
 
+                sw.Stop();
 
+                information.Text = matchable_path;
+                search_time.Text = sw.ElapsedMilliseconds + " ms";
 
+                // Output
+                finger_target.Source = new BitmapImage(new Uri(matchable_path));
+                information.Text = "Found most similar at " + Path.GetFileName(matchable_path);
+                search_time.Text = sw.ElapsedMilliseconds + " ms";
+                similarity_persentage.Text = matchable_similarity.ToString() + " %";
+
+            }
+            catch (Exception ex)
+            {
+                information.Text = "Invalid Dataset Directory";
+                information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFB2B2"));
+            }
         }
 
         private void switchChecked(object sender, RoutedEventArgs e)
