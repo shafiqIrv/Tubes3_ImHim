@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:Tubes3_ImHim"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <BitmapImage x:Key="logo" UriSource="assets\logo.png"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

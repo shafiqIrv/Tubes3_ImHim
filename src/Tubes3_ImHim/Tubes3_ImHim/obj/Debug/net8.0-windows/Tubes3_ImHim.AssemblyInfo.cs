@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tubes3_ImHim")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d636d15d17dadbdd83ce3cb73ae52a011b1c694")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e96b4c92a59bcd8871f7a249d89a912e4f3e258f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tubes3_ImHim")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tubes3_ImHim")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
