@@ -1,51 +1,306 @@
 ﻿<Window x:Class="Tubes3_ImHim.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="fingerFinder" Height="878" Width="1538" Background="#0A0B15">
+        Title="fingerFinder" Height="850" Width="745" MinHeight="850" MinWidth="745" Background="#0A0B15">
+
+    <Window.Resources>
+        <!-- TO DO: BIKIN JADI SMOOTH -->
+        <Style x:Key="ToggleSwitchStyle" TargetType="ToggleButton">
+            <Setter Property="Width" Value="85"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20" Padding="2 0" BorderBrush="#4759B4" BorderThickness="2" >
+                            <Grid>
+                                <Ellipse x:Name="Ellipse" Width="28" Height="28" Fill="White" HorizontalAlignment="Left"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="#A3AFF1"/>
+                                <Setter TargetName="Ellipse" Property="HorizontalAlignment" Value="Right"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Background" Value="#6876BF"/>
+                                <Setter TargetName="Ellipse" Property="HorizontalAlignment" Value="Left"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#4759B4"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="20">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#6876BF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#364F6B"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Image Source="/resources/logo.png" MaxWidth="500" VerticalAlignment="Top"/>
-        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="170"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="210"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="350"/>
+        </Grid.RowDefinitions>
+
+        
+
+        <!-- Row 0 Content -->
+        <Image Grid.Row="0" Width="470" Source="C:\Users\Shafi\Documents\Works\Informatika\Semester 4\Stima\Tubes 3\With Repo\Tubes3_ImHim\src\Tubes3_ImHim\Tubes3_ImHim\resources\logo.png" />
+
+        <!-- Row 1 Content -->
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+            <TextBlock Name="information"  Text="" Foreground="White" Margin="35 10 0 10"/>
+        </Grid>
+
+        <!-- Row 2 Content -->
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-
-            </Grid.RowDefinitions>
-            <Border Grid.Row="0" Background="#242F45" Margin="56,215,53,276" Grid.Column="2" Grid.ColumnSpan="2" Padding="20" CornerRadius="20">
-                <StackPanel>
-                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="nama"  Text="Name"/>
-                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="tempat_lahir"  Text="Place of Birth"/>
-                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="tanggal_lahir"  Text="Date of Birth"/>
-                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="gender"  Text="Gender"/>
-                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="goldar"  Text="Blood Type"/>
-                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="alamat"  Text="Address"/>
-                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="agama"  Text="Religion"/>
-                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="kawin" Text="Marriage"/>
-                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="pekerjaan"  Text="Job"/>
-                    <TextBlock Margin="5" FontSize="18" FontFamily="Roboto Mono" Foreground="#C2CDDA" Name ="kewarganegaraan"  Text="Nationalitu"/>
-                </StackPanel>
+            <!-- Row 2 Col 0 Content -->
+            <Border Grid.Column="0" Background="#242F45" Width="177" Height="210" Padding="5" CornerRadius="35" HorizontalAlignment="Center">
+                <Image Stretch="UniformToFill" Width="167" Height="200" Name ="finger_src">
+                    <Image.Clip>
+                        <RectangleGeometry RadiusX="30" RadiusY="30" Rect="0,0,167,200"/>
+                    </Image.Clip>
+                </Image>
             </Border>
-            <Border Grid.Column="1" Grid.Row="0" Background="#242F45" Margin="58,219,54,273" CornerRadius="20">
-
+            <!-- Row 2 Col 1 Content -->
+            <Border Grid.Column="1" Background="#242F45" Width="177" Height="210" Padding="5" CornerRadius="35" HorizontalAlignment="Center">
+                <Image Stretch="UniformToFill" Width="167" Height="200" Name ="finger_target">
+                    <Image.Clip>
+                        <RectangleGeometry RadiusX="30" RadiusY="30" Rect="0,0,167,200"/>
+                    </Image.Clip>
+                </Image>
             </Border>
-            <Border Grid.Row="0" Background="#242F45" Margin="50,213,62,270" CornerRadius="20">
-                <Image Name="finger_src" />
+            <!-- Row 2 Col 2 Content -->
+            <Grid Grid.Column="2" Width="160">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- Choose File Button -->
+                <Button Grid.Row="0" Style="{StaticResource RoundedButtonStyle}" Content="Choose Image" Height="37" Click="chooseFile" />
+                <!-- Toggle Utility -->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Toggle Button -->
+                    <ToggleButton Grid.Column="0" x:Name="switch_mode" Style="{StaticResource ToggleSwitchStyle}" Height="37" HorizontalAlignment="Center" Checked="switchChecked" Unchecked="switchUnchecked"/>
+                    <!-- Toggle Label -->
+                    <Grid Grid.Column="1" Margin="4 0 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Name="bm" Text="BM" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="|" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Name="kmp" Text="KMP" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="20,0,0,0"/>
+                    </Grid>
 
-            </Border>
-            <Button Content="Pilih Citra" HorizontalAlignment="Center" Margin="0,732,0,0" VerticalAlignment="Top" Height="36" Width="120" Click="chooseFile"/>
-            <ComboBox Grid.Column="1" HorizontalAlignment="Center" Margin="0,723,0,0" VerticalAlignment="Top" Width="162" RenderTransformOrigin="0.204,0.867" Height="40" SelectionChanged="ComboBox_SelectionChanged">
-                <ComboBoxItem Content="KMP"/>
-                <ComboBoxItem Content="BM"/>
-            </ComboBox>
-            <Button Grid.Column="2" Content="Search" HorizontalAlignment="Left" Margin="120,728,0,0" VerticalAlignment="Top" Height="39" Width="153" Click="search"/>
-            <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="12,712,0,0" TextWrapping="Wrap" FontSize="20" Foreground="#C2CDDA" Text="Waktu Pencarian: " VerticalAlignment="Top" Height="37" Width="224"/>
-            <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="12,749,0,0" TextWrapping="Wrap" FontSize="20" Foreground="#C2CDDA" Text="Persentase Kecocokkan: " VerticalAlignment="Top" Height="37" Width="224"/>
+                </Grid>
+
+                <!-- Search Button -->
+                <Button Grid.Row="2" Style="{StaticResource RoundedButtonStyle}" Content="Search" Height="37" Click="search"/>
+            </Grid>
         </Grid>
 
+        <!-- Row 3 Content -->
+        <Grid Grid.Row="3" Margin="0 20 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!-- Search Time -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="50 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Search Time" Foreground="#FFFFFF"/>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="XXXX ms" Name="search_time" Foreground="#FFFFFF"/>
+            </Grid>
+            <!-- Search Time -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="50 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Similarity %" Foreground="#FFFFFF"/>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="XXXX %" Name="similarity_persentage" Foreground="#FFFFFF"/>
+            </Grid>
+        </Grid>
 
+        <!-- Row 4 Content -->
+        <Grid Grid.Row="4" Background="#0A0B15">
+            <Border Background="#242F45" Padding="10" CornerRadius="20" Margin="35">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!-- Nama -->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Name" Foreground="#FFFFFF"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="Ivan gunawan" Name="db_nama" Foreground="#FFFFFF"/>
+                    </Grid>
+                    <!-- Place of Birth -->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Place of Birth" Foreground="#FFFFFF"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="Cirebon" Name="db_birthplace" Foreground="#FFFFFF"/>
+                    </Grid>
+                    <!-- Date of Birth -->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Date of Birth" Foreground="#FFFFFF"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="17 Agustus 1945" Name="db_bithdate" Foreground="#FFFFFF"/>
+                    </Grid>
+                    <!-- Gender -->
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Gender" Foreground="#FFFFFF"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="Male" Name="db_gender" Foreground="#FFFFFF"/>
+                    </Grid>
+                    <!-- Blood Type -->
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Blood Type" Foreground="#FFFFFF"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="O+" Name="db_bloodtype" Foreground="#FFFFFF"/>
+                    </Grid>
+                    <!-- Address -->
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Address" Foreground="#FFFFFF"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="Tebet dalam" Name="db_address" Foreground="#FFFFFF"/>
+                    </Grid>
+                    <!-- Religion -->
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Religion" Foreground="#FFFFFF"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="Islam" Name="db_religion" Foreground="#FFFFFF"/>
+                    </Grid>
+                    <!-- Marriage -->
+                    <Grid Grid.Row="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Marriage" Foreground="#FFFFFF"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="Yes" Name="db_marriage" Foreground="#FFFFFF"/>
+                    </Grid>
+                    <!-- Job -->
+                    <Grid Grid.Row="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Job" Foreground="#FFFFFF"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="Programmer" Name="db_job" Foreground="#FFFFFF"/>
+                    </Grid>
+                    <!-- Nationallity -->
+                    <Grid Grid.Row="9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Text="Nationallity" Foreground="#FFFFFF"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Text=":" Foreground="#FFFFFF"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Text="Indonesia" Name="db_nationallity" Foreground="#FFFFFF"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

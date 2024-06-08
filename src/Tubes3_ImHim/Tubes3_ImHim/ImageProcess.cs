@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,21 +18,29 @@ namespace Tubes3_ImHim
 
         public static string BitmapToBinary(string bmpFilePath)
         {
-            using (FileStream fileStream = new FileStream(bmpFilePath, FileMode.Open, FileAccess.Read))
+            using (Bitmap bitmap = new Bitmap(bmpFilePath))
             {
-                using (BinaryReader binaryReader = new BinaryReader(fileStream))
+                StringBuilder binaryString = new StringBuilder();
+
+                // Loop through each pixel in the bitmap
+                for (int y = 0; y < bitmap.Height; y++)
                 {
-                    byte[] binaryData = binaryReader.ReadBytes((int)fileStream.Length);
-                    StringBuilder binaryString = new StringBuilder();
-
-                    foreach (byte b in binaryData)
+                    for (int x = 0; x < bitmap.Width; x++)
                     {
-                        // Mengonversi setiap byte menjadi string biner 8-bit dan menambahkannya ke StringBuilder
-                        binaryString.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
-                    }
+                        Color pixel = bitmap.GetPixel(x, y);
 
-                    return binaryString.ToString();
+                        // Convert to grayscale
+                        int grayScale = (int)((pixel.R * 0.3) + (pixel.G * 0.59) + (pixel.B * 0.11));
+
+                        // Apply threshold (Assuming 128 as the middle point of 256)
+                        int binaryValue = grayScale > 128 ? 1 : 0;
+
+                        // Append the binary value to the string builder
+                        binaryString.Append(binaryValue);
+                    }
                 }
+
+                return binaryString.ToString();
             }
         }
 

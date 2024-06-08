@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj": {}
+    "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\With Repo\\Tubes3_ImHim\\src\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj": {
+    "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\With Repo\\Tubes3_ImHim\\src\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj",
+        "projectUniqueName": "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\With Repo\\Tubes3_ImHim\\src\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj",
         "projectName": "Tubes3_ImHim",
-        "projectPath": "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj",
+        "projectPath": "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\With Repo\\Tubes3_ImHim\\src\\Tubes3_ImHim\\Tubes3_ImHim\\Tubes3_ImHim.csproj",
         "packagesPath": "C:\\Users\\Shafi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\Tubes3_ImHim\\Tubes3_ImHim\\obj\\",
+        "outputPath": "C:\\Users\\Shafi\\Documents\\Works\\Informatika\\Semester 4\\Stima\\Tubes 3\\With Repo\\Tubes3_ImHim\\src\\Tubes3_ImHim\\Tubes3_ImHim\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Shafi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,6 +52,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.1.35, )"
+            },
+            "System.Data.SQLite": {
+              "target": "Package",
+              "version": "[1.0.118, )"
             },
             "System.Drawing.Common": {
               "target": "Package",

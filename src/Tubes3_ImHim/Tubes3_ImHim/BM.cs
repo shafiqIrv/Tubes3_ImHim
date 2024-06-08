@@ -10,7 +10,8 @@ namespace Tubes3_ImHim
     {
         private static int[] BuildBadCharShift(string pattern)
         {
-            const int alphabetSize = 256; // Size of the alphabet (ASCII)
+            // Size of the alphabet (ASCII)
+            const int alphabetSize = 256; 
             int[] badCharShift = new int[alphabetSize];
 
             for (int i = 0; i < alphabetSize; i++)
