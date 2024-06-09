@@ -13,6 +13,7 @@
     <None Remove="assets\circle.png" />
     <None Remove="assets\hollow.png" />
     <None Remove="assets\logo.png" />
+    <None Remove="connectionSettings.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,9 @@
     <Resource Include="assets\circle.png" />
     <Resource Include="assets\hollow.png" />
     <Resource Include="assets\logo.png" />
+    <Resource Include="connectionSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
