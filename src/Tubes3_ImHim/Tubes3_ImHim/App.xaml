@@ -6,6 +6,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <BitmapImage x:Key="logo" UriSource="assets\logo.png"/>
+            <BitmapImage x:Key="circle" UriSource="assets\circle.png"/>
+            <BitmapImage x:Key="hollow" UriSource="assets\hollow.png"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

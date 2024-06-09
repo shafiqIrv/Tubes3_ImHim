@@ -15,6 +15,10 @@ namespace Tubes3_ImHim
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const string RED = "#FFB2B2";
+        private const string GREEN = "#B2FFC7";
+        private const string WHITE = "#FFFFFF";
+        private const string CYAN = "#00E0FF";
 
         public string mode;
         public string dataset_path;
@@ -39,7 +43,7 @@ namespace Tubes3_ImHim
 
             // Initialize default mode as KMP
             mode = "bm";
-            bm.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00E0FF"));
+            bm.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(CYAN));
             bm.FontWeight = FontWeights.Bold;
             search_time.Text = mode;
         }
@@ -85,13 +89,13 @@ namespace Tubes3_ImHim
             similarity_persentage.Text = "";
             finger_target.Source = null;
             information.Text = "";
-            information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+            information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(WHITE));
 
             // Check dulu si image nya empty ga
             if (finger_src.Source == null)
             {
                 information.Text = "Please select the fingerprint image you want to search for";
-                information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFB2B2"));
+                information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(RED));
                 return;
             }
 
@@ -138,18 +142,18 @@ namespace Tubes3_ImHim
             catch (Exception ex)
             {
                 information.Text = "Invalid Dataset Directory";
-                information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFB2B2"));
+                information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(RED));
             }
         }
 
         private void switchChecked(object sender, RoutedEventArgs e)
         {
             // Change color BM
-            bm.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+            bm.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(WHITE));
             bm.FontWeight = FontWeights.Light;
 
             // Change color KMP
-            kmp.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00E0FF"));
+            kmp.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(CYAN));
             kmp.FontWeight = FontWeights.Bold;
 
         }
@@ -157,11 +161,11 @@ namespace Tubes3_ImHim
         private void switchUnchecked(object sender, RoutedEventArgs e)
         {
             // Change color KMP
-            kmp.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+            kmp.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(WHITE));
             kmp.FontWeight = FontWeights.Light;
             
             // Change color BM
-            bm.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00E0FF"));
+            bm.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(CYAN));
             bm.FontWeight = FontWeights.Bold;
 
             Console.WriteLine(mode);
