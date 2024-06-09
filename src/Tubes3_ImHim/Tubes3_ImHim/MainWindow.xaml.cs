@@ -72,11 +72,14 @@ namespace Tubes3_ImHim
             {
 
                 dataset_path = folderDialog.FolderName;
-                information.Text = dataset_path;
 
-                // Implement Load databasenya disini
+
+                // Implement Load databasenya disini sama pengecekan kosong apa ga nya
 
                 // Enable button lainnya
+                information.Text = "Successfully loaded dataset from " + dataset_path;
+                information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GREEN  ));
+
                 search_btn.IsEnabled = true;
                 choose_file_btn.IsEnabled = true;
             }
@@ -104,12 +107,15 @@ namespace Tubes3_ImHim
             try
             {
 
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
 
                 IEnumerable<string> files = Directory.EnumerateFiles(directoryPath);
 
-                // Iterasi melalui semua file dan mencetak nama file
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                // Cari dulu di awal dengan algoritma KMP/BM
+
+
+                // Iterasi melalui semua file dengan Levenshtein distance
                 foreach (string file in files)
                 {
                     target_path = file;
