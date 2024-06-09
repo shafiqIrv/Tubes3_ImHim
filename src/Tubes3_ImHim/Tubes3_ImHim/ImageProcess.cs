@@ -29,13 +29,12 @@ namespace Tubes3_ImHim
                     {
                         Color pixel = bitmap.GetPixel(x, y);
 
-                        // Convert to grayscale
+                        // Convert ke grayscale
                         int grayScale = (int)((pixel.R * 0.3) + (pixel.G * 0.59) + (pixel.B * 0.11));
 
-                        // Apply threshold (Assuming 128 as the middle point of 256)
+                        // Nilai kritis = 128
                         int binaryValue = grayScale > 128 ? 1 : 0;
 
-                        // Append the binary value to the string builder
                         binaryString.Append(binaryValue);
                     }
                 }
@@ -48,55 +47,48 @@ namespace Tubes3_ImHim
         {
             string num = n;
 
-            // Stores the decimal value
+            // simpan value desimal
             int dec_value = 0;
 
-            // Initializing base value to 1
+            // Inisialisasi base jadi 1
             int base1 = 1;
 
             int len = num.Length;
             for (int i = len - 1; i >= 0; i--)
             {
-
-                // If the current bit is 1
                 if (num[i] == '1')
                     dec_value += base1;
                 base1 = base1 * 2;
             }
 
-            // Return answer
             return dec_value;
         }
 
-        public static string setStringtoASCII(string str)
+        public static string setStringtoASCII(string s)
         {
 
-            // To store size of s
-            int N = (str.Length);
+            // Simpan ukuran string
+            int N = (s.Length);
 
-            // Kalo ga valid, normalisasi, isi 0 dibelakang
+            // Normalisasi jika tidak valid
             if (N % 8 != 0)
             {
                 while (N % 8 != 0)
                 {
-                    str = str + "0";
+                    s = s + "0";
                 }
             }
 
-            // To store final answer
             string res = "";
 
-            // Loop to iterate through String
+            // Iterasi
             for (int i = 0; i < N; i += 8)
             {
-                int decimal_value = binaryToDecimal((str.Substring(i, 8)));
+                int decimal_value = binaryToDecimal((s.Substring(i, 8)));
 
-                // Apprend the ASCII character
-                // equivalent to current value
                 res += (char)(decimal_value);
             }
 
-            // Return Answer
             return res;
         }
 

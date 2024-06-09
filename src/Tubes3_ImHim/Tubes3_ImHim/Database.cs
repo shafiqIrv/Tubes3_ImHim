@@ -157,7 +157,7 @@ namespace Tubes3_ImHim
                         {
                             while (reader.Read())
                             {
-                                ids.Add(reader.GetInt32("id"));
+                                ids.Add(reader.GetInt32("ID"));
                             }
                         }
                     }
@@ -175,6 +175,7 @@ namespace Tubes3_ImHim
 
         public static void Seeding(string folderPath, string connectionString)
         {
+            System.Diagnostics.Debug.WriteLine("Seeding Started");
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
@@ -192,15 +193,20 @@ namespace Tubes3_ImHim
                     AddFirstColumn(connectionString, "sidik_jari", "ID");
                     AddColumn(connectionString, "sidik_jari", "ascii", "text");
 
-                    string[] bmFiles = Directory.GetFiles(folderPath, "*.bm");
-                    var faker = new Faker();
+                    IEnumerable<string> bmFiles = Directory.EnumerateFiles(folderPath, "*.BMP");
 
-                    using (MySqlTransaction transaction = connection.BeginTransaction())
+                    // Set Seed supaya ga random terus tiap generate ulang
+                    Randomizer.Seed = new Random(7777);
+
+                    var faker = new Faker();
+                    foreach (string bmFile in bmFiles)
                     {
-                        try
+                        using (MySqlTransaction transaction = connection.BeginTransaction())
                         {
-                            foreach (string bmFile in bmFiles)
+                            try
                             {
+
+
                                 string ascii = ImageProcesser.BitmapToAscii(bmFile); // Ensure this method exists
                                 string path = bmFile;
                                 string name = GenerateRandomName(faker);
@@ -231,7 +237,7 @@ namespace Tubes3_ImHim
                                         }
                                         else
                                         {
-                                            nik = GenerateRandomNIK(dateOfBirthString,faker);
+                                            nik = GenerateRandomNIK(dateOfBirthString, faker);
                                         }
                                     }
                                 }
@@ -265,25 +271,26 @@ namespace Tubes3_ImHim
 
                                 using (MySqlCommand cmd = new MySqlCommand(sidikJariQuery, connection, transaction))
                                 {
-                                    cmd.Parameters.AddWithValue("@berkas_citra", ascii);
+                                    cmd.Parameters.AddWithValue("@berkas_citra", path);
                                     cmd.Parameters.AddWithValue("@nama", name);
                                     cmd.Parameters.AddWithValue("@ascii", ascii);
 
                                     cmd.ExecuteNonQuery();
                                 }
-                            }
 
-                            // Commit transaction
-                            transaction.Commit();
-                            Console.WriteLine("All records were written to the database.");
-                        }
-                        catch (Exception ex)
-                        {
-                            // Rollback transaction if any error occurs
-                            transaction.Rollback();
-                            Console.WriteLine("Error: " + ex.Message);
+                                // Commit transaction
+                                transaction.Commit();
+                                Console.WriteLine("All records were written to the database.");
+                            }
+                            catch (Exception ex)
+                            {
+                                // Rollback transaction if any error occurs
+                                transaction.Rollback();
+                                Console.WriteLine("Error: " + ex.Message);
+                            }
                         }
                     }
+                    
                     connection.Close();
                 }
                 catch (Exception ex)
@@ -432,7 +439,7 @@ namespace Tubes3_ImHim
         {
             string resultstring = name;
 
-            Random random = new Random();
+            Random random = new Random(); 
 
             // for each character in result random remove vowel
             for (int i = 0; i < resultstring.Length; i++)
@@ -516,8 +523,8 @@ namespace Tubes3_ImHim
         }
 
         static string GenerateDateOfBirth(Faker faker)
-        {
-            return faker.Date.Past().ToString("yyyy-MM-dd");
+        { 
+            return faker.Date.Past(30,DateTime.Now.AddYears(-10)).ToString("yyyy-MM-dd");
         }
 
         static string GenerateRandomNIK(string dateOfBirth, Faker faker)

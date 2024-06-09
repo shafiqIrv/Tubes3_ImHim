@@ -13,7 +13,7 @@ namespace Tubes3_ImHim
         //     Console.WriteLine(result);
         // }
 
-        static bool IsMatch(string Name, string target)
+        public static bool IsMatch(string Name, string target)
         {
             // Membersihkan input alayName dan target
             Name = CleanString(Name);
