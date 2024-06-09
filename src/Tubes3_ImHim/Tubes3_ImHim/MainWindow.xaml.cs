@@ -29,7 +29,7 @@ namespace Tubes3_ImHim
         public int match_id;
         public float total_time;
         public float match_similarity = 0;
-        public string connection_string;
+        public string connection_string = Database.GetConnectionStringFromJson("connectionSettings.json");
 
 
         public MainWindow()
@@ -84,7 +84,7 @@ namespace Tubes3_ImHim
                 try
                 {
                     // Implement Load databasenya disini sama pengecekan kosong apa ga nya
-                    connection_string = "Server=localhost;User=root;Password=011075;Database=tubes3";  // JANLUP GANTI JADI DI FILE EXTERNAL
+                    connection_string = Database.GetConnectionStringFromJson("connectionSettings.json");  // JANLUP GANTI JADI DI FILE EXTERNAL
                     Database.Seeding(dataset_path, connection_string);
                     information.Text = "Successfully loaded dataset from " + dataset_path;
                     information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GREEN));
@@ -108,11 +108,7 @@ namespace Tubes3_ImHim
                     choose_file_btn.IsEnabled = true;
                 }
 
-                // Enable button lainnya
-                //information.Text = "Successfully loaded dataset from " + dataset_path;
-                //information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GREEN  ));
-
-                
+ 
 
             }
         }
@@ -124,9 +120,10 @@ namespace Tubes3_ImHim
 
             try
             {
-     
-                connection_string = Database.GetConnectionStringFromJson("connectionSettings.json");  // JANLUP GANTI JADI DI FILE EXTERNAL
-                information.Text = "Successfully loaded dataset from " + dataset_path;
+                // Implement Load databasenya disini sama pengecekan kosong apa ga nya
+                connection_string = Database.GetConnectionStringFromJson("connectionSettings.json"); 
+                //DatabaseConverter.ConvertData(connection_string);
+                information.Text = "Successfully loaded dataset";
                 information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GREEN));
             }
             catch (Exception ex)
@@ -138,7 +135,7 @@ namespace Tubes3_ImHim
             // Data nya kosong
             if ((Database.GetAllIds(connection_string)).Count == 0)
             {
-                information.Text = "The database given is empty";
+                information.Text = "The dataset given is empty";
                 information.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(RED));
                 return;
             }
@@ -147,7 +144,9 @@ namespace Tubes3_ImHim
                 search_btn.IsEnabled = true;
                 choose_file_btn.IsEnabled = true;
             }
-           
+
+
+
         }
 
 
@@ -211,7 +210,7 @@ namespace Tubes3_ImHim
                     string ascii = Database.GetColumnValueById(connection_string, "ascii", id);
                     float persentase = LevenshteinDistance.Calculate(src_ascii, ascii);
 
-                    if (persentase > persentase_id_tercocok)
+                    if (persentase > persentase_id_tercocok || persentase > 55)
                     {
                         persentase_id_tercocok = persentase;
                         id_tercocok = id;
