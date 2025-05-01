@@ -1,6 +1,6 @@
 # Tubes3_ImHim
 
-## Deskripsi Tugas
+## Deskripsi Projek
 
 Algoritma Knuth-Morris-Pratt (KMP) dan Boyer-Moore (BM) adalah teknik pencocokan pola yang efisien untuk mencari keberadaan suatu pola dalam sebuah teks. Dalam program ini, KMP menggunakan tabel lompatan untuk menghindari pencocokan karakter yang tidak perlu, sementara BM memanfaatkan heuristik bad character dan good suffix untuk mengoptimalkan pergeseran pola. Regex, singkatan dari regular expression, adalah suatu hal yang digunakan untuk memanipulasi string berdasarkan pola yang kompleks, memberikan fleksibilitas dalam pencarian dan manipulasi string. Dalam program ini, regex digunakan untuk mencocokkan nama yang mungkin mengalami variasi seperti perubahan huruf besar atau kecil, penggunaan huruf menjadi angka, atau hilangnya huruf vokal.
 
